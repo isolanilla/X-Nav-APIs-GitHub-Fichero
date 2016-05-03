@@ -1,23 +1,27 @@
 $(document).ready(function() {
-  var github 
+
   $("#grabToken").click(function(){
     $("#repo").show()
 
     $("#grabRepo").click(function(){
       var token =   $("#token").val();
-      console.log("TOKEN " + token);
-      github =  new Github({token:token,auth: "oauth"});
-      var repo =   $("#repo").val();
+
+      var github =  new Github({token:token,auth: "oauth"});
+
+      var reponame =   $("#repositorio").val();
       var username =   $("#username").val()
       var fich = $("#fich").val()
       var text = $("#text").val()
-      var repo = github.getRepo(username, repo);
+      console.log("REPONAME" + reponame)
+      console.log("USERNAME " + username);
+      var repo = github.getRepo(username, reponame);
 
-      repo.write('gh-pages', fich, text, 'init commit', function(err) {});
+      repo.write('gh-pages', fich, text, 'fichero de prueba', function(err) {});
+
       $("#getInfo").click(function(){
-        var repo =   $("#repo").val();
+        var reponame =   $("#repositorio").val();
         var username =   $("#username").val()
-        var repo = github.getRepo(username, repo);
+        var repo = github.getRepo(username, reponame);
         var info = $("#info")
         info.html("<p>Repo data:</p>" +
 		      "<ul><li>Full name: " + repo.full_name + "</li>" +
@@ -28,3 +32,5 @@ $(document).ready(function() {
     });
   });
 });
+//X-Nav-APIs-GitHub-Fichero
+//f6c0a103aac6f7f0b013cb25abcc5187662fdbbc
